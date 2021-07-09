@@ -11,7 +11,7 @@ export class PostService {
   constructor(private http: HttpClient) { }
 
   createPost(postPayload: CreatePostPayload): Observable<any> {
-    return this.http.post('/api/v1/post/upload', postPayload,
+    return this.http.post('/api/v1/post/upload/', postPayload,
       {
         responseType: 'json',
         headers: {

@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {SignUpPayload} from './sign-up.payload';
 import {AuthService} from "../auth.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-sign-up',
@@ -14,7 +15,7 @@ export class SignUpComponent implements OnInit {
   registerForm: FormGroup;
   signUpPayload: SignUpPayload;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router,private toastr: ToastrService) {
     this.signUpPayload = {
       firstName: '',
       lastName: '',
@@ -43,11 +44,16 @@ export class SignUpComponent implements OnInit {
     this.authService.register(this.signUpPayload)
       .subscribe(data => {
         console.log('Kayıt basarili');
+        this.toastr.info('Başarıyla kayıt oldunuz.');
+
         this.router.navigate(['/login'],
           {queryParams: {registered: 'true'}});
       }, error => {
         console.log(error);
         console.log('kayit başarısız');
+        this.toastr.error('Hatalı bilgiler girdiniz.');
+
+
       });
   }
 

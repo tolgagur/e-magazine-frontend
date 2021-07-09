@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'sign-up', component: SignUpComponent},
   {path: 'login', component: LoginComponent},
   {path: 'kesfet', component: KesfetComponent},
-  {path: 'post', component: PostPageComponent},
+  {path: 'post', component: PostPageComponent,canActivate: [AuthGuard]},
   {path: 'profile', component: ProfilePageComponent},
   {path: 'sponsor', component: SponsorComponent}
 ];

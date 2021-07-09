@@ -16,7 +16,6 @@ import { LocalStorageService } from 'ngx-webstorage';
 export class AuthService {
   @Output() loggedIn: EventEmitter<boolean> = new EventEmitter();
 
-  @Output() userId: EventEmitter<number> = new EventEmitter();
 
 
 
@@ -26,28 +25,38 @@ export class AuthService {
   register(signUpPayload: SignUpPayload): Observable<any> {
     return this.httpClient.post('/api/v1/registration/', signUpPayload,
       {
-        responseType: 'json',
+        responseType: 'text',
         headers: {
           token: "token"
         }
       });
   }
 
-  login(loginRequestPayload: LoginRequestPayload): Observable<boolean> {
-    return this.httpClient.post<LoginResponse>('/api/v1/login',
-      loginRequestPayload).pipe(map(data => {
-      this.localStorage.store("token", data.token);
-      this.localStorage.store('success', data.success);
-      this.localStorage.store('userId', data.userId);
+  // login(loginRequestPayload: LoginRequestPayload): Observable<boolean> {
+  //   return this.httpClient.post<LoginResponse>('/api/v1/login',
+  //     loginRequestPayload).pipe(map(data => {
+  //     this.localStorage.store("token", data.token);
+  //     this.localStorage.store('success', data.success);
+  //     this.localStorage.store('userId', data.userId);
+  //     console.log(this.isAuthenticated());
+  //     this.loggedIn.emit(true);
+  //     this.userId.emit(data.userId);
+  //     return true;
+  //   }));
+  // }
 
+  login(loginRequestPayload:LoginRequestPayload){
+    return this.httpClient.post<LoginResponse>('/api/v1/login/',loginRequestPayload)
+  }
 
+  isAuthenticated(){
+    if(localStorage.getItem("token")){
       this.loggedIn.emit(true);
-      this.userId.emit(data.userId);
-
       return true;
-
-    }));
-
+    }
+    else{
+      return false;
+    }
   }
 
 
@@ -56,13 +65,7 @@ export class AuthService {
   }
 
 
-  isAuthenticated(){
-    if(localStorage.getItem("token")){
-      return true;
-    }else{
-      return false;
-    }
-  }
+
   isLoggedIn(): boolean {
     return this.getJwtToken() != null;
   }

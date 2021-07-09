@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {LoginRequestPayload} from "./login-request.payload";
 import {AuthService} from "../auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -21,44 +21,41 @@ export class LoginComponent implements OnInit {
 
 
 
-  constructor(private authService: AuthService, private activatedRoute: ActivatedRoute,
-              private router: Router, private toastr: ToastrService) {
-    this.loginRequestPayload = {
-      email: '',
-      password: ''
-    };
+  constructor(private formBuilder:FormBuilder,
+              private authService:AuthService, private toastrService:ToastrService,private router: Router,) {
 
-    this.activatedRoute.queryParams
-      .subscribe(params => {
-        if (params.registered !== undefined && params.registered === 'true') {
-          this.toastr.success('Signup Successful');
-          this.registerSuccessMessage = 'Başarıyla kayıt oldunuz.'
-            + 'Giriş yapabilirsiniz.';
-        }
-      });
+
   }
 
   ngOnInit(): void {
-    this.loginForm = new FormGroup({
-      email: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required)
+    this.createLoginForm();
+
+  }
+  createLoginForm(){
+    this.loginForm = this.formBuilder.group({
+      email: ["",Validators.required],
+      password:["",Validators.required]
     })
-
   }
 
-  login() {
-    this.loginRequestPayload.email = this.loginForm.get('email').value;
-    this.loginRequestPayload.password = this.loginForm.get('password').value;
+  login(){
+    if(this.loginForm.valid){
+      console.log(this.loginForm.value);
+      let loginModel = Object.assign({},this.loginForm.value)
 
-    this.authService.login(this.loginRequestPayload).subscribe(response => {
-      this.isError = false;
+      this.authService.login(loginModel).subscribe(response=>{
+        this.toastrService.info("giris basarili");
+        localStorage.setItem("token",response.token);
+        this.router.navigateByUrl('home');
 
-      this.router.navigateByUrl('home');
-      this.toastr.success('Giriş Başarılı');
-    }, error => {
-      this.isError = true;
-      throwError(error);
-    });
+      },responseError=>{
+        //console.log(responseError)
+        this.toastrService.error(responseError.error)
+      })
+    }
   }
+
+
+
 
 }
