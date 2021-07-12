@@ -1,1 +1,51 @@
-<p>profile-page works!</p>
+<section class="section profile-section" *ngIf="profileModel">
+  <div class="container">
+    <div class="profile-section-wrapper">
+      <div class="profile-pic-wrapper">
+        <img
+          class="profile-pic"
+
+          routerLinkActive="router-link-active"
+          src="assets/images/imagex.jpg"
+          alt="Image"
+          alt="Image"
+        />
+      </div>
+      <div class="profile-info">
+        <p class="is-size-4">
+          {{ profileModel.userName }}
+          <span
+          ><button type="button" class="button">
+							Edit Profile
+						</button></span
+          >
+          <span class="settings-icon">
+						<fa-icon></fa-icon>
+					</span>
+        </p>
+        <p class="is-size-6">
+          <span>0 Posts</span><span>{{profileModel.followedCount}} Followers</span
+        ><span>{{profileModel.followerCount}} Following</span>
+        </p>
+        <p class="is-size-5">
+          {{ profileModel.firstName }} {{ profileModel.lastName }}
+        </p>
+        <p class="is-size-6"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <div class="wrapper">
+          <div class="animate input-placeholder"></div>
+          <div class="animate input-placeholder"></div>
+          <div class="animate input-placeholder"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

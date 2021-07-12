@@ -17,6 +17,7 @@ import {NgxWebstorageModule} from "ngx-webstorage";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HomeComponent} from './home/home.component';
 import {AuthInterceptor} from "./interceptors/auth.interceptor";
+import { PostTileComponent } from './home/post-tile/post-tile.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {AuthInterceptor} from "./interceptors/auth.interceptor";
     SponsorComponent,
     PostPageComponent,
     ProfilePageComponent,
-    HomeComponent
+    HomeComponent,
+    PostTileComponent
   ],
   imports: [
     BrowserModule,

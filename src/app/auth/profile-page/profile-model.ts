@@ -1,6 +1,9 @@
 export class ProfileModel{
-  userId: number;
+  userId: string;
   firstName: string;
   lastName: string;
   email: string;
+  userName: string;
+  followedCount: number;
+  followerCount: number;
 }

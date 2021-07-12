@@ -6,5 +6,6 @@ export class PostModel{
   picUrl: string;
   likeCount: number;
   commentCount: number;
+  createdAt:string;
   comments: string;
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpEvent, HttpRequest} from "@angular/common/http";
 import {CreatePostPayload} from "./create-post.payload";
 import {Observable} from "rxjs";
+import {PostModel} from "./post-model";
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,11 @@ export class PostService {
         }
       });
   }
+
+  getAllPosts(): Observable<Array<PostModel>> {
+    return this.http.get<Array<PostModel>>('/api/v1/inquireHomePagePosts/');
+  }
+
 
 
 }

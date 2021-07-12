@@ -16,6 +16,8 @@ import { LocalStorageService } from 'ngx-webstorage';
 })
 export class AuthService {
   @Output() loggedIn: EventEmitter<boolean> = new EventEmitter();
+  @Output() userId: EventEmitter<number> = new EventEmitter();
+
 
 
 
@@ -33,20 +35,19 @@ export class AuthService {
       });
   }
 
-  // login(loginRequestPayload: LoginRequestPayload): Observable<boolean> {
-  //   return this.httpClient.post<LoginResponse>('/api/v1/login',
-  //     loginRequestPayload).pipe(map(data => {
-  //     this.localStorage.store("token", data.token);
-  //     this.localStorage.store('success', data.success);
-  //     this.localStorage.store('userId', data.userId);
-  //     console.log(this.isAuthenticated());
-  //     this.loggedIn.emit(true);
-  //     this.userId.emit(data.userId);
-  //     return true;
-  //   }));
-  // }
+  login(loginRequestPayload: LoginRequestPayload): Observable<boolean> {
+    return this.httpClient.post<LoginResponse>('/api/v1/login/',
+      loginRequestPayload).pipe(map(data => {
+      localStorage.setItem("token", data.token);
+      localStorage.setItem('userId', String(data.userId));
+      console.log(this.isAuthenticated());
+      this.loggedIn.emit(true);
+      this.userId.emit(data.userId);
+      return true;
+    }));
+  }
 
-  login(loginRequestPayload:LoginRequestPayload){
+  loginn(loginRequestPayload:LoginRequestPayload){
     return this.httpClient.post<LoginResponse>('/api/v1/login/',loginRequestPayload)
   }
 
@@ -63,6 +64,9 @@ export class AuthService {
 
   getJwtToken() {
     return this.localStorage.retrieve('token');
+  }
+  getUserId() {
+    return this.localStorage.retrieve('userId');
   }
 
 

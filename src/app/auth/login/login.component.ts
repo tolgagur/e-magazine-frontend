@@ -5,7 +5,7 @@ import {AuthService} from "../auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {throwError} from "rxjs";
-import { Output, EventEmitter } from '@angular/core';
+import {Output, EventEmitter} from '@angular/core';
 
 
 @Component({
@@ -20,45 +20,73 @@ export class LoginComponent implements OnInit {
   isError: boolean;
   registerSuccessMessage: string;
 
-  @Output() userId: EventEmitter<number> = new EventEmitter();
+  @Output() userId: EventEmitter<string> = new EventEmitter();
+
+  userIdx: number;
 
 
 
-
-
-  constructor(private formBuilder:FormBuilder,
-              private authService:AuthService, private toastrService:ToastrService,private router: Router,) {
+  constructor(private formBuilder: FormBuilder,
+              private authService: AuthService,
+              private toastrService: ToastrService,
+              private router: Router,) {
+    this.loginRequestPayload = {
+      email: '',
+      password: ''
+    };
 
 
   }
 
   ngOnInit(): void {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required)
+    });
     this.createLoginForm();
 
   }
-  createLoginForm(){
+  createLoginForm() {
     this.loginForm = this.formBuilder.group({
-      email: ["",Validators.required],
-      password:["",Validators.required]
+      email: ["", Validators.required],
+      password: ["", Validators.required]
     })
   }
 
-  login(){
-    if(this.loginForm.valid){
+
+
+
+  login() {
+    this.loginRequestPayload.email = this.loginForm.get('email').value;
+    this.loginRequestPayload.password = this.loginForm.get('password').value;
+
+    this.authService.login(this.loginRequestPayload).subscribe(data => {
+      this.isError = false;
+      this.router.navigateByUrl('');
+      this.toastrService.success('Login Successful');
+    }, error => {
+      this.isError = true;
+      throwError(error);
+    });
+  }
+
+
+  loginn() {
+    if (this.loginForm.valid) {
       console.log(this.loginForm.value);
-      let loginModel = Object.assign({},this.loginForm.value)
-      this.authService.login(loginModel).subscribe(response=>{
+      let loginModel = Object.assign({}, this.loginForm.value)
+      this.authService.login(loginModel).subscribe(response => {
 
-        localStorage.setItem("token",response.token);
-        localStorage.setItem("userId",String(response.userId));
 
-        // @ts-ignore
-        this.userId.emit(response.userId);
+        // localStorage.setItem("token", response.token);
+        // localStorage.setItem("userId", String(response.userId));
+
+
 
         this.toastrService.info("giris basarili");
         this.router.navigateByUrl('home');
 
-      },responseError=>{
+      }, responseError => {
         //console.log(responseError)
         this.toastrService.error("Hatalı bilgiler girdiniz")
       })
@@ -66,7 +94,9 @@ export class LoginComponent implements OnInit {
   }
 
 
-
+  getUserId() {
+    return localStorage.retrieve('userId');
+  }
 
 
 }
