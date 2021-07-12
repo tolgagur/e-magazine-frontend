@@ -9,13 +9,21 @@
         <div class="form-group">
           <div class="create-post-page-heading">Post Create</div>
           <hr/>
-          <input type="text" [formControlName]="'picUrl'" class="form-control" style="margin-top: 5px"
-                 placeholder="Title">
+
           <input type="text" [formControlName]="'title'" class="form-control" style="margin-top: 5px"
                  placeholder="Title">
           <input type="text" [formControlName]="'content'" class="form-control" style="margin-top: 5px"
-                 placeholder="Title">
+                 placeholder="content">
 
+          <input
+            [formControlName]="'file'"
+            id="file"
+            type="file"
+            class="form-control"
+            (change)="onFileChange($event)">
+          <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+            <div *ngIf="f.file.errors.required">File is required.</div>
+          </div>
           <div>
             <div style="margin-top: 5px" class="float-right">
               <button (click)="discardPost()" class="btnDiscard">Discard</button>
@@ -25,6 +33,15 @@
         </div>
       </form>
     </div>
+    <label class="btn btn-default p-0">
+      <input type="file" (change)="selectFile($event)" />
+    </label>
+  </div>
+
+  <div class="col-4">
+    <button class="btn btn-success btn-sm" [disabled]="!selectedFiles" (click)="upload()">
+      Upload
+    </button>
     <div class="col-md-3">
       <div class="sidebar">
         <h5 class="guidelines">İnfo</h5>

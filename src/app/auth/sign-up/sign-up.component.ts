@@ -51,7 +51,7 @@ export class SignUpComponent implements OnInit {
       }, error => {
         console.log(error);
         console.log('kayit başarısız');
-        this.toastr.error('Hatalı bilgiler girdiniz.');
+        this.toastr.error('Bu mail hesabına ait kullanıcı mevcuttur.');
 
 
       });
