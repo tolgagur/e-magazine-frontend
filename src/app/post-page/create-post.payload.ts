@@ -4,5 +4,6 @@ export class CreatePostPayload {
   content: string;
   file: string;
   fileSource: string;
+  tagName: string;
 
 }

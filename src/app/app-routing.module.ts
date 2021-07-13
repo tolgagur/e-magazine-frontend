@@ -10,16 +10,18 @@ import {SponsorComponent} from "./sponsor/sponsor.component";
 import {AppComponent} from "./app.component";
 import {HomeComponent} from "./home/home.component";
 import {AuthGuard} from "./auth/auth.guard";
+import {ViewPostComponent} from "./post-page/view-post/view-post.component";
 
 
 const routes: Routes = [
+  { path: 'post/:postId', component: ViewPostComponent,canActivate: [AuthGuard] },
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'sign-up', component: SignUpComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'kesfet', component: KesfetComponent},
+  {path: 'kesfet', component: KesfetComponent,canActivate: [AuthGuard]},
   {path: 'post', component: PostPageComponent,canActivate: [AuthGuard]},
-  {path: 'profile/:userId', component: ProfilePageComponent},
-  {path: 'sponsor', component: SponsorComponent}
+  {path: 'profile/:userId', component: ProfilePageComponent,canActivate: [AuthGuard]},
+  {path: 'sponsor', component: SponsorComponent,canActivate: [AuthGuard]}
 ];
 
 @NgModule({

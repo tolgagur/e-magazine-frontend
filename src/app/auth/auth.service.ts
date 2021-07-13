@@ -16,7 +16,7 @@ import { LocalStorageService } from 'ngx-webstorage';
 })
 export class AuthService {
   @Output() loggedIn: EventEmitter<boolean> = new EventEmitter();
-  @Output() userId: EventEmitter<number> = new EventEmitter();
+  @Output() userId: EventEmitter<string> = new EventEmitter();
 
 
 

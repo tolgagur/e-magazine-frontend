@@ -6,4 +6,5 @@ export class ProfileModel{
   userName: string;
   followedCount: number;
   followerCount: number;
+  followed: number;
 }

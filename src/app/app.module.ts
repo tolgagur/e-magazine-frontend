@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
 import {AppRoutingModule} from './app-routing.module';
@@ -18,6 +18,10 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HomeComponent} from './home/home.component';
 import {AuthInterceptor} from "./interceptors/auth.interceptor";
 import { PostTileComponent } from './home/post-tile/post-tile.component';
+import {VoteButtonComponent} from "./home/vote-button/vote-button.component";
+import { ViewPostComponent } from './post-page/view-post/view-post.component';
+import { FollowMeComponent } from './auth/profile-page/follow-me/follow-me.component';
+import { TagComponent } from './post-page/tag/tag.component';
 
 @NgModule({
   declarations: [
@@ -30,13 +34,18 @@ import { PostTileComponent } from './home/post-tile/post-tile.component';
     PostPageComponent,
     ProfilePageComponent,
     HomeComponent,
-    PostTileComponent
+    PostTileComponent,
+    VoteButtonComponent,
+    ViewPostComponent,
+    FollowMeComponent,
+    TagComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
     NgxWebstorageModule.forRoot(),
     ToastrModule.forRoot({
       positionClass: "toast-bottom-right"

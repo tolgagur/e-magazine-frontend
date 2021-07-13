@@ -1,11 +1,14 @@
 export class PostModel{
-  userId: number;
+  userId: string;
+  postId:number;
   userName: string;
   title: string;
   content: string;
   picUrl: string;
   likeCount: number;
   commentCount: number;
-  createdAt:string;
+  createdDate:string;
   comments: string;
+  liked: boolean;
+  downVote: boolean;
 }

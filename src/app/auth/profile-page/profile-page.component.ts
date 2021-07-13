@@ -13,7 +13,7 @@ export class ProfilePageComponent implements OnInit {
 
   profileModel: ProfileModel;
 
-  userId:number;
+  userId:string;
 
   constructor(private profileService: ProfilePageService,
               private activatedRoute: ActivatedRoute,

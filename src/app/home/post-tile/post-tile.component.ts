@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {PostModel} from "../../post-page/post-model";
 import {PostService} from "../../post-page/post.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-post-tile',
@@ -12,11 +13,17 @@ export class PostTileComponent implements OnInit {
 
   @Input() posts: PostModel[];
 
-  constructor() {
+
+
+  constructor(private router: Router) {
 
   }
 
   ngOnInit(): void {
+  }
+
+  goToPost(postId: number): void {
+    this.router.navigateByUrl('/post/' + postId);
   }
 
 }

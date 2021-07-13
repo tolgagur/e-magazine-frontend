@@ -11,10 +11,10 @@ export class ProfilePageService {
   profileModels: ProfileModel[];
 
 
-  constructor(private httpClient: HttpClient,private activatedRoute: ActivatedRoute) { }
+  constructor(private http: HttpClient,private activatedRoute: ActivatedRoute) { }
 
 
-  getUser(userId: number): Observable<ProfileModel> {
-    return this.httpClient.get<ProfileModel>('/api/v1/profile/inquireUserInfo/' + userId);
+  getUser(userId: string): Observable<ProfileModel> {
+    return this.http.get<ProfileModel>('/api/v1/profile/inquireUserInfo/' + userId);
   }
 }

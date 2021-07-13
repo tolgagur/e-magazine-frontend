@@ -1,0 +1,13 @@
+
+<div class="col-md-1">
+  <div class="d-flex flex-column votebox">
+    <div class="p-2">
+      <fa-icon (click)="followPost()" class="upvote" [icon]="faArrowUp" [style.color]="user.followed ? 'green':''">
+      </fa-icon>
+    </div>
+    <div class="p-2 votecount">{{user.followerCount}}</div>
+    <div class="p-2">
+
+    </div>
+  </div>
+</div>

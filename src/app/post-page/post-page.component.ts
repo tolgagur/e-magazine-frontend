@@ -6,6 +6,8 @@ import {CreatePostPayload} from "./create-post.payload";
 import {Observable, throwError} from "rxjs";
 import {ToastrService} from "ngx-toastr";
 import {HttpEventType, HttpResponse} from "@angular/common/http";
+import {TagService} from "./tag/tag.service";
+import {TagModel} from "./tag/tag-response";
 
 @Component({
   selector: 'app-post-page',
@@ -21,16 +23,24 @@ export class PostPageComponent implements OnInit {
   currentFile?: File;
   progress = 0;
   message = '';
+  tagModels: Array<TagModel>;
+
+
+
 
   fileInfos?: Observable<any>;
 
-  constructor(private router: Router, private postService: PostService, private toastr: ToastrService ) {
+  constructor(private router: Router,
+              private postService: PostService,
+              private toastr: ToastrService,
+              private tagService: TagService) {
     this.postPayload = {
       picUrl: '',
       title: '',
       content: '',
       file:'',
       fileSource:'',
+      tagName:''
     }
   }
 
@@ -41,8 +51,13 @@ export class PostPageComponent implements OnInit {
       title: new FormControl('', Validators.required),
       content: new FormControl('', Validators.required),
       file: new FormControl('', [Validators.required]),
-      fileSource: new FormControl('', [Validators.required])
-
+      fileSource: new FormControl('', [Validators.required]),
+      tag: new FormControl('', Validators.required),
+    });
+    this.tagService.getAllTags().subscribe((data) => {
+      this.tagModels = data;
+    }, error => {
+      throwError(error);
     });
   }
   //sdasdsa//
@@ -119,6 +134,8 @@ export class PostPageComponent implements OnInit {
     this.postPayload.content = this.createPostForm.get('content').value;
     this.postPayload.file = this.createPostForm.get('file').value;
     this.postPayload.fileSource = this.createPostForm.get('fileSource').value;
+    this.postPayload.tagName = this.createPostForm.get('tag').value;
+
 
 
 
