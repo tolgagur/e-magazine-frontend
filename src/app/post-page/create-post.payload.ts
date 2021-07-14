@@ -3,7 +3,7 @@ export class CreatePostPayload {
   title: string;
   content: string;
   file: string;
-  fileSource: string;
+  picture: string;
   tagName: string;
 
 }

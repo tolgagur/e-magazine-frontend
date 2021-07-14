@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {PostModel} from "../../post-page/post-model";
 import {PostService} from "../../post-page/post.service";
 import {Router} from "@angular/router";
-import { faComments } from '@fortawesome/free-solid-svg-icons';
+import {faClock, faComments } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-post-tile',
@@ -14,6 +14,7 @@ export class PostTileComponent implements OnInit {
 
   @Input() posts: PostModel[];
   faComments = faComments;
+  faClock = faClock;
 
 
 

@@ -39,7 +39,7 @@ export class PostPageComponent implements OnInit {
       title: '',
       content: '',
       file:'',
-      fileSource:'',
+      picture:'',
       tagName:''
     }
   }
@@ -51,7 +51,7 @@ export class PostPageComponent implements OnInit {
       title: new FormControl('', Validators.required),
       content: new FormControl('', Validators.required),
       file: new FormControl('', [Validators.required]),
-      fileSource: new FormControl('', [Validators.required]),
+      picture: new FormControl('', [Validators.required]),
       tag: new FormControl('', Validators.required),
     });
     this.tagService.getAllTags().subscribe((data) => {
@@ -120,7 +120,7 @@ export class PostPageComponent implements OnInit {
       reader.onload = () => {
         this.imageSrc = reader.result as string;
         this.createPostForm.patchValue({
-          fileSource: reader.result
+          picture: reader.result
         });
       };
 
@@ -133,7 +133,7 @@ export class PostPageComponent implements OnInit {
     this.postPayload.title = this.createPostForm.get('title').value;
     this.postPayload.content = this.createPostForm.get('content').value;
     this.postPayload.file = this.createPostForm.get('file').value;
-    this.postPayload.fileSource = this.createPostForm.get('fileSource').value;
+    this.postPayload.picture = this.createPostForm.get('picture').value;
     this.postPayload.tagName = this.createPostForm.get('tag').value;
 
 

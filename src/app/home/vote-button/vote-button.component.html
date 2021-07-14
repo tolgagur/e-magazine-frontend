@@ -1,13 +1,6 @@
-<!-- Section to Display Votes-->
-<div class="col-md-1">
-  <div class="d-flex flex-column votebox">
-    <div class="p-2">
-      <fa-icon (click)="upvotePost()" class="upvote" [icon]="faArrowUp" [style.color]="post.liked ? 'green':''">
-      </fa-icon>
-    </div>
-    <div class="p-2 votecount">{{post.likeCount}}</div>
-    <div class="p-2">
 
-    </div>
-  </div>
-</div>
+<fa-icon *ngIf="post.liked" (click)="upvotePost()" class="upvote" [icon]="faheart" [style.color]="post.liked ? 'red':''">
+</fa-icon>
+<fa-icon *ngIf="!post.liked" (click)="upvotePost()" class="upvote" [icon]="faheart" [style.color]="post.liked ? 'black':''">
+</fa-icon>&nbsp;{{post.likeCount}}
+

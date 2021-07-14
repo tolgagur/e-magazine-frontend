@@ -6,6 +6,7 @@ import {throwError} from "rxjs";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CommentPayload} from "../comment/comment.payload";
 import {CommentService} from "../comment/comment.service";
+import { faClock } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-view-post',
@@ -19,6 +20,7 @@ export class ViewPostComponent implements OnInit {
   commentForm: FormGroup;
   commentPayload: CommentPayload;
   comments: CommentPayload[];
+  faClock = faClock;
   constructor(private postService: PostService, private activateRoute: ActivatedRoute,
               private router: Router,private commentService: CommentService) {
     this.postId = this.activateRoute.snapshot.params.postId;

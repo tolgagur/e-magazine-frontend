@@ -14,6 +14,7 @@ export class PostModel{
   downVote: boolean;
   fullName: string;
   likedd: boolean;
+  picture:string;
   comments: Array<CommentType> = [];
 
 

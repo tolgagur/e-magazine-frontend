@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {PostModel} from "../../post-page/post-model";
 
-import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUp, faHeart } from '@fortawesome/free-solid-svg-icons';
 import {VoteService} from "./vote.service";
 import {AuthService} from "../../auth/auth.service";
 import {PostService} from "../../post-page/post.service";
@@ -21,7 +21,7 @@ export class VoteButtonComponent implements OnInit {
   @Input() post: PostModel;
 
   votePayload: VotePayload;
-  faArrowUp = faArrowUp;
+  faheart =faHeart;
   isLoggedIn: boolean;
 
 

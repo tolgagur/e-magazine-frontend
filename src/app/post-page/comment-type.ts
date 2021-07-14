@@ -5,4 +5,5 @@ export class CommentType{
   comment:string;
   owner: boolean;
   createdDate: Date;
+
 }
