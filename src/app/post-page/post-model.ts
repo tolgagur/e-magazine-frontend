@@ -1,3 +1,5 @@
+import {CommentType} from "./comment-type";
+
 export class PostModel{
   userId: string;
   postId:number;
@@ -8,7 +10,13 @@ export class PostModel{
   likeCount: number;
   commentCount: number;
   createdDate:string;
-  comments: string;
   liked: boolean;
   downVote: boolean;
+  fullName: string;
+  likedd: boolean;
+  comments: Array<CommentType> = [];
+
+
+
+
 }

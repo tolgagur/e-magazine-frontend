@@ -22,8 +22,6 @@ export class VoteButtonComponent implements OnInit {
 
   votePayload: VotePayload;
   faArrowUp = faArrowUp;
-  upvoteColor: string;
-  downvoteColor: string;
   isLoggedIn: boolean;
 
 

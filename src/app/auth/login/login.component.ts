@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   isError: boolean;
   registerSuccessMessage: string;
 
-  @Output() userId: EventEmitter<string> = new EventEmitter();
+  @Output() id: EventEmitter<string> = new EventEmitter();
 
   userIdx: number;
 
@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit {
 
 
         // localStorage.setItem("token", response.token);
-        // localStorage.setItem("userId", String(response.userId));
+        // localStorage.setItem("id", String(response.id));
 
 
 
@@ -95,7 +95,7 @@ export class LoginComponent implements OnInit {
 
 
   getUserId() {
-    return localStorage.retrieve('userId');
+    return localStorage.retrieve('id');
   }
 
 

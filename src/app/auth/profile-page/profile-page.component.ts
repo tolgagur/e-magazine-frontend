@@ -3,6 +3,8 @@ import {ProfileModel} from "./profile-model";
 import {ProfilePageService} from "./profile-page.service";
 import {throwError} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
+import {faArrowUp, faComments } from '@fortawesome/free-solid-svg-icons';
+import {FollowPayload} from "./follow-me/follow-payload";
 
 @Component({
   selector: 'app-profile-page',
@@ -12,14 +14,24 @@ import {ActivatedRoute} from "@angular/router";
 export class ProfilePageComponent implements OnInit {
 
   profileModel: ProfileModel;
+  id:number;
+  followPayload: FollowPayload;
+  faArrowUp = faArrowUp;
+  followme :boolean;
 
-  userId:string;
+  isLoggedIn: boolean;
+
+
 
   constructor(private profileService: ProfilePageService,
               private activatedRoute: ActivatedRoute,
               private profilepagaService: ProfilePageService) {
-    this.userId = this.activatedRoute.snapshot.params.userId;
-    this.profilepagaService.getUser(this.userId).subscribe(data => {
+
+    this.followPayload = {
+      id:undefined
+    }
+    this.id = this.activatedRoute.snapshot.params.id;
+    this.profilepagaService.getUser(this.id).subscribe(data => {
       this.profileModel = data;
     });
 
@@ -30,11 +42,17 @@ export class ProfilePageComponent implements OnInit {
   }
 
   private getUser() {
-    this.profileService.getUser(this.userId).subscribe(data => {
+    this.profileService.getUser(this.id).subscribe(data => {
       this.profileModel = data;
+      this.id= data.id;
     }, error => {
       throwError(error);
     });
   }
+
+
+
+
+
 
 }

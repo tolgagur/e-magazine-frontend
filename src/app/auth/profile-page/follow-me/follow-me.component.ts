@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import {faArrowUp} from '@fortawesome/free-solid-svg-icons';
 import {ProfileModel} from "../profile-model";
 import {FollowPayload} from "./follow-payload";
 import {AuthService} from "../../auth.service";
@@ -23,14 +23,13 @@ export class FollowMeComponent implements OnInit {
   isLoggedIn: boolean;
 
 
-
   constructor(private authService: AuthService,
               private followService: FollowService,
               private postService: PostService,
-              private profilePageService:ProfilePageService,
-              private toastr: ToastrService){
+              private profilePageService: ProfilePageService,
+              private toastr: ToastrService) {
     this.followPayload = {
-      userId:undefined
+      id: undefined
     }
     this.authService.loggedIn.subscribe((data: boolean) => this.isLoggedIn = data);
 
@@ -41,20 +40,22 @@ export class FollowMeComponent implements OnInit {
   }
 
   followPost() {
-    console.log("followPost");
     this.follow();
   }
+
   private follow() {
-    this.followPayload.userId = this.user.userId;
+    this.followPayload.id = this.user.id;
     this.followService.follow(this.followPayload).subscribe(() => {
       this.updateFollowDetails();
     }, error => {
+
       this.toastr.error(error.error.message);
       throwError(error);
     });
   }
+
   private updateFollowDetails() {
-    this.profilePageService.getUser(this.user.userId).subscribe(user => {
+    this.profilePageService.getUser(this.user.id).subscribe(user => {
       this.user = user;
     });
   }

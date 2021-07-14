@@ -1,9 +1,7 @@
 <br>
-<br>
-<br>
 <div class="container">
   <div class="row">
-    <hr />
+    <hr/>
     <div class="col-md-9">
       <div class="row post">
         <div class="col-md-1">
@@ -11,33 +9,44 @@
         </div>
         <div class="col-md-11">
           <span>
-            <span> . Posted
+            <span>Posted
               <span> {{post.createdDate}} </span>
               by
-              <a class="username" href="">{{post.userName}}</a>
+              <a class="username" href="/profile/{{post.userId}}">{{post.fullName}}</a>
             </span>
           </span>
-          <hr />
-          <a routerLink="post.url" class="post-title">{{post.title}}</a>
+          <hr/>
+          <img src="https://cdn.photo-kako.com/sample/low-image-quality.jpg"
+               height="800"
+               width="600">
+          <br>
+          <p class="post-text" [innerHtml]="post.title"></p>
           <div>
             <p class="post-text" [innerHtml]="post.content"></p>
           </div>
           <div class="post-comment">
-              <form [formGroup]="commentForm" (ngSubmit)="postComment()">
-                <div class="form-group">
-                  <textarea class="form-control" [formControlName]="'text'" placeholder="Your Thoughts?"></textarea>
-                </div>
-                <button type="submit" class="login float-right">Comment</button>
-              </form>
-
-
+            <form [formGroup]="commentForm" (ngSubmit)="postComment()">
+              <div class="form-group">
+                <textarea class="form-control" [formControlName]="'text'" placeholder="Your Thoughts?"></textarea>
+              </div>
+              <button type="submit" class="login float-right"(click)="refresh()">Comment</button>
+            </form>
           </div>
-
+          <div style="margin-top: 60px;" *ngFor="let c of post.comments">
+            <div class="comment">
+              <div class="username">
+                {{c.createdDate}} <a routerLink="/profile/{{c.userId}}"> {{c.fullName}} </a>
+              </div>
+              <div>
+              </div>
+              <b>{{c.comment}}</b>
+            </div>
+            <hr/>
+          </div>
         </div>
       </div>
     </div>
     <div class="col-md-3">
-
     </div>
   </div>
 </div>

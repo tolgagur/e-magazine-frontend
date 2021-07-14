@@ -20,8 +20,9 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'kesfet', component: KesfetComponent,canActivate: [AuthGuard]},
   {path: 'post', component: PostPageComponent,canActivate: [AuthGuard]},
-  {path: 'profile/:userId', component: ProfilePageComponent,canActivate: [AuthGuard]},
-  {path: 'sponsor', component: SponsorComponent,canActivate: [AuthGuard]}
+  {path: 'profile/:id', component: ProfilePageComponent,canActivate: [AuthGuard]},
+  {path: 'sponsor', component: SponsorComponent,canActivate: [AuthGuard]},
+  {path: '', component: AppComponent}
 ];
 
 @NgModule({

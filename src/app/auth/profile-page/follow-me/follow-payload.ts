@@ -1,3 +1,3 @@
 export class FollowPayload {
-  userId: string;
+  id: number;
 }

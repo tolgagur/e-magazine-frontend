@@ -1,15 +1,25 @@
 <header>
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-        <div class="flex-grow-1">
-            <a aria-label="Home" class="logo" routerLink="/">
+        <div class="flex-grow-1" *ngIf="isLoggedIn">
+            <a aria-label="Home" class="logo" routerLink="/home">
               &nbsp;
               &nbsp;
 
               <span class="emagazine-text">
                     e-Magazine
-                </span>
+              </span>
             </a>
         </div>
+      <div class="flex-grow-1" *ngIf="!isLoggedIn">
+        <a aria-label="Home" class="logo" routerLink="/">
+          &nbsp;
+          &nbsp;
+
+          <span class="emagazine-text">
+                    e-Magazine
+              </span>
+        </a>
+      </div>
       &nbsp;
       &nbsp;
       &nbsp;

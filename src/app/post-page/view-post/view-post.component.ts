@@ -55,5 +55,8 @@ export class ViewPostComponent implements OnInit {
       throwError(error);
     })
   }
+  refresh(): void {
+    window.location.reload();
+  }
 
 }

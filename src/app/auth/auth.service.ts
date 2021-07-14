@@ -16,7 +16,7 @@ import { LocalStorageService } from 'ngx-webstorage';
 })
 export class AuthService {
   @Output() loggedIn: EventEmitter<boolean> = new EventEmitter();
-  @Output() userId: EventEmitter<string> = new EventEmitter();
+  @Output() id: EventEmitter<number> = new EventEmitter();
 
 
 
@@ -39,10 +39,9 @@ export class AuthService {
     return this.httpClient.post<LoginResponse>('/api/v1/login/',
       loginRequestPayload).pipe(map(data => {
       localStorage.setItem("token", data.token);
-      localStorage.setItem('userId', String(data.userId));
-      console.log(this.isAuthenticated());
+      this.localStorage.store("id",data.id);
       this.loggedIn.emit(true);
-      this.userId.emit(data.userId);
+      this.id.emit(data.id);
       return true;
     }));
   }
@@ -66,7 +65,7 @@ export class AuthService {
     return this.localStorage.retrieve('token');
   }
   getUserId() {
-    return this.localStorage.retrieve('userId');
+    return this.localStorage.retrieve('id');
   }
 
 
