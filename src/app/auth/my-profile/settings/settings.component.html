@@ -11,125 +11,66 @@
                 <h3 class="mb-0">User Settings</h3>
               </div>
               <div class="card-body">
-                <form autocomplete="off" class="form" role="form">
+                <form  [formGroup]="settingsForm" (ngSubmit)="settings()"  >
                   <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Profile İmage</label>
-                    <div class="col-lg-9">
-                      <div class="form-control">
-                      <img src="{{profileModel.profilePicture}}" class="rounded-circle me-3" height="150px"
-                           width="150px" alt="avatar" />                    </div>
-                    </div>
+                    <label for="firstName" class="col-md-4 col-form-label text-md-right">firstName</label>
+                    <div class="col-md-6">
+                      <input type="text"   id="firstName" [formControlName]="'firstName'"  class="form-control" name="email-address" required
+                             autofocus>
 
+                    </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Select İmage</label>
-                    <div class="col-lg-9">
-                      <div class="col-md-6">
-                        <input
-                          [formControlName]="'file'"
-                          id="file"
-                          type="file"
-                          class="form-control"
-                          (change)="onFileChange($event)">
-                        <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
-                          <div *ngIf="f.file.errors.required">File is required.</div>
-                        </div>
+                    <label for="lastName" class="col-md-4 col-form-label text-md-right">lastName</label>
+                    <div class="col-md-6">
+                      <input type="text"   id="lastName" [formControlName]="'lastName'"  class="form-control" name="email-address" required
+                             autofocus>
+                    </div>
+                  </div>
 
+                  <div class="form-group row">
+                    <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail
+                      Address</label>
+                    <div class="col-md-6">
+                      <input type="text" [formControlName]="'email'"  id="email" class="form-control" name="email-address" required
+                             autofocus>
+
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-group row">
+                    <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                    <div class="col-md-6">
+                      <input type="password" [formControlName]="'password'"  id="password" class="form-control" name="password" required>
+
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="password" class="col-md-4 col-form-label text-md-right">Profile İmage</label>
+                    <div class="col-md-6">
+                      <input
+                        [formControlName]="'file'"
+                        id="file"
+                        type="file"
+                        class="form-control"
+                        (change)="onFileChange($event)">
+                      <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+                        <div *ngIf="f.file.errors.required">File is required.</div>
                       </div>
+
                     </div>
                   </div>
 
-                  <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">First name</label>
-                    <div class="col-lg-9">
-                      <input class="form-control" [formControlName]="'firstName'" type="text" value="{{profileModel.firstName}}">
-                    </div>
-                  </div>
-
-                  <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Last name</label>
-                    <div class="col-lg-9">
-                      <input class="form-control" [formControlName]="'lastName'" type="text" value="{{profileModel.lastName}}">
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Email</label>
-                    <div class="col-lg-9">
-                      <input class="form-control" [formControlName]="'email'" type="text" value="{{profileModel.userName}}">
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Profile İmage</label>
-
-                  </div>
 
 
-<!--                  <div class="form-group row">-->
-<!--                    <label class="col-lg-3 col-form-label form-control-label">Website</label>-->
-<!--                    <div class="col-lg-9">-->
-<!--                      <input class="form-control" type="url" value="">-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                  <div class="form-group row">-->
-<!--                    <label class="col-lg-3 col-form-label form-control-label">Time Zone</label>-->
-<!--                    <div class="col-lg-9">-->
-<!--                      <select class="form-control" id="user_time_zone" size="0">-->
-<!--                        <option value="Hawaii">-->
-<!--                          (GMT-10:00) Hawaii-->
-<!--                        </option>-->
-<!--                        <option value="Alaska">-->
-<!--                          (GMT-09:00) Alaska-->
-<!--                        </option>-->
-<!--                        <option value="Pacific Time (US &amp; Canada)">-->
-<!--                          (GMT-08:00) Pacific Time (US &amp; Canada)-->
-<!--                        </option>-->
-<!--                        <option value="Arizona">-->
-<!--                          (GMT-07:00) Arizona-->
-<!--                        </option>-->
-<!--                        <option value="Mountain Time (US &amp; Canada)">-->
-<!--                          (GMT-07:00) Mountain Time (US &amp; Canada)-->
-<!--                        </option>-->
-<!--                        <option selected="selected" value="Central Time (US &amp; Canada)">-->
-<!--                          (GMT-06:00) Central Time (US &amp; Canada)-->
-<!--                        </option>-->
-<!--                        <option value="Eastern Time (US &amp; Canada)">-->
-<!--                          (GMT-05:00) Eastern Time (US &amp; Canada)-->
-<!--                        </option>-->
-<!--                        <option value="Indiana (East)">-->
-<!--                          (GMT-05:00) Indiana (East)-->
-<!--                        </option>-->
-<!--                      </select>-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                  <div class="form-group row">-->
-<!--                    <label class="col-lg-3 col-form-label form-control-label">Username</label>-->
-<!--                    <div class="col-lg-9">-->
-<!--                      <input class="form-control" type="text" value="janeuser">-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                  <div class="form-group row">-->
-<!--                    <label class="col-lg-3 col-form-label form-control-label">Password</label>-->
-<!--                    <div class="col-lg-9">-->
-<!--                      <input class="form-control" type="password" value="11111122333">-->
-<!--                      <small class="form-text text-muted" id="passwordHelpBlock">Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.</small>-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                  <div class="form-group row">-->
-<!--                    <label class="col-lg-3 col-form-label form-control-label">Confirm</label>-->
-<!--                    <div class="col-lg-9">-->
-<!--                      <input class="form-control" type="password" value="11111122333">-->
-<!--                    </div>-->
-<!--                  </div>-->
-                  <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label"></label>
-                    <div class="col-lg-9">
-                      <input class="btn btn-secondary" type="reset" value="Cancel">
-                      <button type="submit" class="sign-up">
-                        Upload
-                      </button>
-                      <input  class="btn btn-primary" type="button" value="Save Changes">
-                    </div>
-                  </div>
+                  <span class="col-md-6 offset-md-4">
+                            <button type="submit" class="sign-up">
+                                Sign Up
+                            </button>
+                            <span style="padding-left: 15px">Existing user? <a routerLink="/login">Log In</a></span>
+                        </span>
                 </form>
               </div>
             </div>
