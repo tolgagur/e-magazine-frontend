@@ -3,4 +3,5 @@ export interface SignUpPayload {
   lastName: string;
   email: string;
   password: string;
+  profilePicture:string;
 }

@@ -308,6 +308,9 @@ img {
     transform: rotate(360deg);
   }
 }
+body {
+  background-color: #f5f7fa;
+}
 
 /*
 

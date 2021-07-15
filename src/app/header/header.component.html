@@ -33,8 +33,8 @@
         <div *ngIf="isLoggedIn" >
           <a routerLink="/sponsor" class="emagazine-text">Sponsor </a>&nbsp;
           <a routerLink="/post" class="emagazine-text"> Post </a>&nbsp;
-          <a (click)="goToUserProfile()" class="float-right sign-up mr-2">Profile</a>
-          <a routerLink="/out" class="float-right login mr-2">out</a>
+          <a routerLink="/myprofile" class="float-right sign-up mr-2">Profile</a>
+          <a (click)="logout()" class="float-right login mr-2">out</a>
         </div>
         <div *ngIf="!isLoggedIn">
           <a routerLink="/sign-up" class="float-right sign-up mr-2">Sign up</a>

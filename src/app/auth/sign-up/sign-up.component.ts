@@ -13,14 +13,17 @@ import {ToastrService} from "ngx-toastr";
 export class SignUpComponent implements OnInit {
 
   registerForm: FormGroup;
+
   signUpPayload: SignUpPayload;
+  imageSrc: string;
 
   constructor(private authService: AuthService, private router: Router,private toastr: ToastrService) {
     this.signUpPayload = {
       firstName: '',
       lastName: '',
       email: '',
-      password: ''
+      password: '',
+      profilePicture:''
     };
   }
 
@@ -31,7 +34,27 @@ export class SignUpComponent implements OnInit {
       lastName: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),
+      profilePicture: new FormControl('', [Validators.required]),
+
     });
+  }
+  get f(){
+    return this.registerForm.controls;
+  }
+  onFileChange(event) {
+    const reader = new FileReader();
+    if(event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.imageSrc = reader.result as string;
+        this.registerForm.patchValue({
+          profilePicture: reader.result
+        });
+      };
+
+    }
+    console.log(event);
   }
 
 
@@ -40,6 +63,8 @@ export class SignUpComponent implements OnInit {
     this.signUpPayload.lastName = this.registerForm.get('lastName').value;
     this.signUpPayload.email = this.registerForm.get('email').value;
     this.signUpPayload.password = this.registerForm.get('password').value;
+    this.signUpPayload.profilePicture = this.registerForm.get('profilePicture').value;
+
 
     this.authService.register(this.signUpPayload)
       .subscribe(data => {

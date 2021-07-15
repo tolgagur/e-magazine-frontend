@@ -11,6 +11,8 @@ import {AppComponent} from "./app.component";
 import {HomeComponent} from "./home/home.component";
 import {AuthGuard} from "./auth/auth.guard";
 import {ViewPostComponent} from "./post-page/view-post/view-post.component";
+import {MyProfileComponent} from "./auth/my-profile/my-profile.component";
+import {SettingsComponent} from "./auth/my-profile/settings/settings.component";
 
 
 const routes: Routes = [
@@ -21,6 +23,9 @@ const routes: Routes = [
   {path: 'kesfet', component: KesfetComponent,canActivate: [AuthGuard]},
   {path: 'post', component: PostPageComponent,canActivate: [AuthGuard]},
   {path: 'profile/:id', component: ProfilePageComponent,canActivate: [AuthGuard]},
+  {path: 'myprofile', component: MyProfileComponent,canActivate: [AuthGuard]},
+  {path: 'settings', component: SettingsComponent,canActivate: [AuthGuard]},
+
   {path: 'sponsor', component: SponsorComponent,canActivate: [AuthGuard]},
   {path: '', component: AppComponent}
 ];

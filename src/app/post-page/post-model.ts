@@ -13,8 +13,8 @@ export class PostModel{
   liked: boolean;
   downVote: boolean;
   fullName: string;
-  likedd: boolean;
   picture:string;
+  userProfilePic:string;
   comments: Array<CommentType> = [];
 
 

@@ -3,7 +3,7 @@ import {ProfileModel} from "./profile-model";
 import {ProfilePageService} from "./profile-page.service";
 import {throwError} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
-import {faArrowUp, faComments } from '@fortawesome/free-solid-svg-icons';
+import {faArrowUp, faClock, faComments } from '@fortawesome/free-solid-svg-icons';
 import {FollowPayload} from "./follow-me/follow-payload";
 
 @Component({
@@ -14,10 +14,12 @@ import {FollowPayload} from "./follow-me/follow-payload";
 export class ProfilePageComponent implements OnInit {
 
   profileModel: ProfileModel;
+  faClock=faClock;
   id:number;
   followPayload: FollowPayload;
   faArrowUp = faArrowUp;
   followme :boolean;
+  posts: ProfileModel[];
 
   isLoggedIn: boolean;
 
@@ -25,13 +27,13 @@ export class ProfilePageComponent implements OnInit {
 
   constructor(private profileService: ProfilePageService,
               private activatedRoute: ActivatedRoute,
-              private profilepagaService: ProfilePageService) {
+              private profilepageService: ProfilePageService) {
 
     this.followPayload = {
       id:undefined
     }
     this.id = this.activatedRoute.snapshot.params.id;
-    this.profilepagaService.getUser(this.id).subscribe(data => {
+    this.profilepageService.getUser(this.id).subscribe(data => {
       this.profileModel = data;
     });
 

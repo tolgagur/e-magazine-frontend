@@ -21,7 +21,6 @@
                         <div class="col-md-6">
                           <input type="text"   id="lastName" [formControlName]="'lastName'"  class="form-control" name="email-address" required
                                  autofocus>
-
                         </div>
                       </div>
 
@@ -44,6 +43,23 @@
 
                             </div>
                         </div>
+                      <div class="form-group row">
+                        <label for="password" class="col-md-4 col-form-label text-md-right">Profile İmage</label>
+                        <div class="col-md-6">
+                          <input
+                            [formControlName]="'file'"
+                            id="file"
+                            type="file"
+                            class="form-control"
+                            (change)="onFileChange($event)">
+                          <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+                            <div *ngIf="f.file.errors.required">File is required.</div>
+                          </div>
+
+                        </div>
+                      </div>
+
+
 
                         <span class="col-md-6 offset-md-4">
                             <button type="submit" class="sign-up">

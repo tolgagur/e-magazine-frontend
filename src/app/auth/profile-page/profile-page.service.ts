@@ -20,11 +20,12 @@ export class ProfilePageService {
   getUser(id: number): Observable<ProfileModel> {
     return this.http.get<ProfileModel>('/api/v1/profile/inquireUserInfo/' + id);
   }
+  getMyUser(): Observable<ProfileModel> {
+    return this.http.get<ProfileModel>('/api/v1/profile/myProfile/');
+  }
 
   follow(followPayload: FollowPayload): Observable<any> {
     return this.http.post('api/v1/user/follow/', followPayload);
   }
-  follow2(id: number): Observable<any> {
-    return this.http.post('api/v1/user/follow/', id);
-  }
+
 }

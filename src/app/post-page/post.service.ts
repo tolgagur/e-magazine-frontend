@@ -32,7 +32,7 @@ export class PostService {
   }
 
   getAllPosts(): Observable<Array<PostModel>> {
-    return this.http.get<Array<PostModel>>('/api/v1/inquireHomePagePostsForNewUser/');
+    return this.http.get<Array<PostModel>>('/api/v1/inquireHomePagePost/');
   }
 
   getPost(postId: number): Observable<PostModel> {

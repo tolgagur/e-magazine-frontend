@@ -1,15 +1,11 @@
 
-<div class="col-md-1">
-  <div class="d-flex flex-column votebox">
-    <div class="p-2">
-      <fa-icon (click)="followPost()" class="upvote" [icon]="faArrowUp" [style.color]="user.followed ? 'green':''">
-      </fa-icon>
-              <button (click)="followPost()" *ngIf="!user.followed"  class="btn btn-primary">followed</button>
-              <button (click)="followPost()" *ngIf="user.followed" class="btn btn-primary">follow</button>
-    </div>
-    <div class="p-2 votecount">{{user.followedCount}}</div>
-    <div class="p-2">
+<!--      <fa-icon (click)="followPost()" class="upvote" [icon]="faArrowUp" [style.color]="user.followed ? 'green':''">-->
+<!--      </fa-icon>-->
 
-    </div>
-  </div>
-</div>
+<!--{{user.id}}&nbsp;&nbsp;Post&nbsp;&nbsp;{{user.followerCount}}&nbsp;&nbsp;Following&nbsp;&nbsp;{{user.followedCount}}&nbsp;&nbsp;Followes&nbsp;&nbsp;-->
+<!--<button (click)="followPost()" *ngIf="!user.followed"  class="btn btn-primary">follow  </button>-->
+<!--<button (click)="followPost()" *ngIf="user.followed" class="btn btn-primary">followed</button>-->
+
+
+<button (click)="followPost()" *ngIf="!user.followed"  class="btn btn-primary">follow  </button>
+<button (click)="followPost()" *ngIf="user.followed" class="btn btn-primary">followed</button>

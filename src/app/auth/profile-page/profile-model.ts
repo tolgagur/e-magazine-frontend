@@ -1,3 +1,5 @@
+import {UserProfileType} from "./userProfile-type";
+
 export class ProfileModel{
   id: number;
   firstName: string;
@@ -7,4 +9,6 @@ export class ProfileModel{
   followedCount: number;
   followerCount: number;
   followed: boolean;
+  profilePicture: string;
+  posts: Array<UserProfileType> = [];
 }

@@ -6,6 +6,7 @@ import {LoginRequestPayload} from "./login/login-request.payload";
 import {LoginResponse} from "./login/login-response.payload";
 import {map} from "rxjs/operators";
 import { LocalStorageService } from 'ngx-webstorage';
+import {Router} from "@angular/router";
 
 
 
@@ -22,7 +23,7 @@ export class AuthService {
 
 
 
-  constructor(private httpClient: HttpClient, private localStorage: LocalStorageService) {
+  constructor(private httpClient: HttpClient, private localStorage: LocalStorageService,private router: Router) {
   }
 
   register(signUpPayload: SignUpPayload): Observable<any> {
@@ -44,6 +45,10 @@ export class AuthService {
       this.id.emit(data.id);
       return true;
     }));
+  }
+  logout() {
+    this.localStorage.clear('token');
+    this.router.navigateByUrl('');
   }
 
   loginn(loginRequestPayload:LoginRequestPayload){

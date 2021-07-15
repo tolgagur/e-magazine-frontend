@@ -22,6 +22,8 @@ import {VoteButtonComponent} from "./home/vote-button/vote-button.component";
 import { ViewPostComponent } from './post-page/view-post/view-post.component';
 import { FollowMeComponent } from './auth/profile-page/follow-me/follow-me.component';
 import { TagComponent } from './post-page/tag/tag.component';
+import { MyProfileComponent } from './auth/my-profile/my-profile.component';
+import { SettingsComponent } from './auth/my-profile/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { TagComponent } from './post-page/tag/tag.component';
     VoteButtonComponent,
     ViewPostComponent,
     FollowMeComponent,
-    TagComponent
+    TagComponent,
+    MyProfileComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
