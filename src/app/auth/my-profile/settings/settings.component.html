@@ -24,26 +24,37 @@
                   <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Select İmage</label>
                     <div class="col-lg-9">
-                      <input class="form-control" type="file" value="">
+                      <div class="col-md-6">
+                        <input
+                          [formControlName]="'file'"
+                          id="file"
+                          type="file"
+                          class="form-control"
+                          (change)="onFileChange($event)">
+                        <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+                          <div *ngIf="f.file.errors.required">File is required.</div>
+                        </div>
+
+                      </div>
                     </div>
                   </div>
 
                   <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">First name</label>
                     <div class="col-lg-9">
-                      <input class="form-control" type="text" value="{{profileModel.firstName}}">
+                      <input class="form-control" [formControlName]="'firstName'" type="text" value="{{profileModel.firstName}}">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Last name</label>
                     <div class="col-lg-9">
-                      <input class="form-control" type="text" value="{{profileModel.lastName}}">
+                      <input class="form-control" [formControlName]="'lastName'" type="text" value="{{profileModel.lastName}}">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Email</label>
                     <div class="col-lg-9">
-                      <input class="form-control" type="text" value="{{profileModel.userName}}">
+                      <input class="form-control" [formControlName]="'email'" type="text" value="{{profileModel.userName}}">
                     </div>
                   </div>
                   <div class="form-group row">
@@ -112,7 +123,10 @@
                     <label class="col-lg-3 col-form-label form-control-label"></label>
                     <div class="col-lg-9">
                       <input class="btn btn-secondary" type="reset" value="Cancel">
-                      <input class="btn btn-primary" type="button" value="Save Changes">
+                      <button type="submit" class="sign-up">
+                        Upload
+                      </button>
+                      <input  class="btn btn-primary" type="button" value="Save Changes">
                     </div>
                   </div>
                 </form>
