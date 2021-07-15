@@ -1,0 +1,94 @@
+<br>
+<br>
+<br>
+
+<section class="section profile-section" *ngIf="profileModel">
+
+
+  <div class="container">
+    <section class="mx-auto my-5" style="max-width: 77rem;">
+
+      <div class="card">
+        <div class="card-body d-flex flex-row">
+          <img src="{{profileModel.profilePicture}}" class="rounded-circle me-3" height="150px"
+               width="150px" alt="avatar" />
+          <div>
+            <p class="profile-user-name  justify-content-start"><i class="far fa-clock pe-2"></i> &nbsp;&nbsp;{{profileModel.firstName}}  {{profileModel.lastName}}</p>
+            <br>
+            <div class="profile-stats  justify-content-start" >
+
+              <ul>
+                <li><span class="profile-stat-count">{{profileModel.id}}</span> posts</li>
+                <li><span class="profile-stat-count">{{profileModel.followerCount}}</span> followers</li>
+                <li><span class="profile-stat-count">{{profileModel.followedCount}}</span> followed
+                </li>
+                <li> <a routerLink="/settings"><fa-icon (click)="settingsUrl()"  [icon]="faCog" ></fa-icon></a>
+                </li>
+              </ul>
+
+            </div>
+          </div>
+        </div>
+        <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light" *ngFor="let userPost of profileModel.posts">
+          <div class="container">
+            <section class="mx-auto my-5" style="max-width: 33rem;">
+
+              <div class="card">
+                <div class="card-body d-flex flex-row">
+
+                  <div>
+                    <p class="card-text"><fa-icon [icon]="faClock" > </fa-icon>&nbsp;{{userPost.createdDate}}</p>
+                  </div>
+                </div>
+                <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
+                  <img class="img-fluid" src="{{userPost.picture}}"
+                       alt="Card image cap" />
+                  <a href="#!">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">{{userPost.content}}</h5>
+                  <p>
+                    {{userPost.title}}
+                  </p>
+                  <a href="/post/{{userPost.postId}}" class="btn btn-outline-success btn-sm">Read More</a>&nbsp;
+                </div>
+              </div>
+
+            </section>
+          </div>
+
+        </div>
+        <div class="card-body">
+
+          <div class="d-flex justify-content-between">
+            <div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+  <!--  <div class="col-md-1">-->
+  <!--    <div class="d-flex flex-column votebox">-->
+  <!--      <div class="p-2">-->
+  <!--        <fa-icon (click)="followPost()" class="upvote" [icon]="faArrowUp" [style.color]="profileModel.followed ? 'green':''">-->
+  <!--        </fa-icon>-->
+  <!--        <button *ngIf="!profileModel.followed"  class="btn profile-edit-btn">followed</button>-->
+  <!--        <button *ngIf="profileModel.followed" class="btn profile-edit-btn">follow</button>-->
+
+
+  <!--      </div>-->
+  <!--      <div class="p-2 votecount">{{profileModel.followerCount}}</div>-->
+  <!--      <div class="p-2">-->
+
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
+</section>
+
+
+
